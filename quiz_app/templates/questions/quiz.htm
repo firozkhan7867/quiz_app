@@ -1,0 +1,249 @@
+{% extends 'base.htm' %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block content %}
+<!--  -->
+<header class="head-area">
+    <h4>Indian History and Cultural Test</h4>
+</header>
+<a class="b btn btn-danger rounded" style="position: absolute;" id="a" href="{% url 'index' %}">Home</a>
+
+
+<div class="container-fluid">
+    <br>
+
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12">
+            <hr>
+
+            <div class="q-no">
+                Questions
+            </div>
+            <div class="info bor">
+                {% if question %}
+                <!--  -->
+                {% for q in question %}
+                <!--  -->
+
+
+                <div class="qus">
+                    <h3> {{ q.id }}. {{ q.Question_var }} </h3>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <ul><br><br>
+                        <p class="lead">
+                            <input type="radio" name="1" id="1" value="1"> {{ q.option_1 }}
+                            <br><br>
+                            <input type="radio" name="1" id="1" value="2"> {{ q.option_2 }}
+                            <br><br>
+                            <input type="radio" name="1" id="1" value="3"> {{ q.option_3 }}
+                            <br><br>
+                            <input type="radio" name="1" id="1" value="4"> {{ q.option_4 }} <br><br>
+                        </p>
+
+                    </ul>
+
+
+                    {% endfor %}
+                    <!--  -->
+                    {% endif %}
+
+                    <div class="form">
+                        <button type="submit" class="btn btn-primary sub">Submit</button>
+                    </div>
+                </form>
+                <br>
+                <!--  -->
+                {% if question.has_other_pages %}
+                <!--  -->
+                {% if question.has_next %}
+                <!--  -->
+                <a href="?page={{question.next_page_number}}" class="btn btn-success right-a"><i class="fas fa-arrow-right "></i></a>
+                <!--  -->
+                {% else %}
+                <a href="" class="btn btn-dark right-a disabled"><i class="fas fa-arrow-right "></i></a>
+                <!--  -->
+                {% endif %}
+                <!--  -->
+                {% if question.has_previous %}
+                <!--  -->
+                <a href="?page={{question.previous_page_number}}" class="btn btn-success right-a"><i class="fas fa-arrow-left "></i></a>
+                <!--  -->
+                {% else %}
+                <a href="" class="btn btn-dark right-a disabled"><i
+                        class="fas fa-arrow-left "></i></a>
+                <!--  -->
+                {% endif %}
+                <!--  -->
+
+                {% endif %}
+
+                <!-- <a href="" class="btn btn-success right-a"><i class="fas fa-arrow-right "></i></a> -->
+
+                <!-- <a href="" class="btn btn-success left-a"><i class="fas fa-arrow-left"></i></a> -->
+
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+            <hr>
+            <div class="q-no">
+                Choose a Question
+            </div>
+            <!-- <div class="row flex">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-4 mr-auto">
+                                <input type="button" value="1" class="btn bb btn-secondary">
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-4 mr-auto">
+                                <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-4 mr-auto">
+                                <input type="button" value="3" class="btn bb btn-secondary">
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-4 mr-auto">
+                                <input type="button" value="4" class="btn bb btn-secondary">
+                            </div>`
+        
+                        </div> -->
+            <div class="flex info">
+
+                {% if question.has_other_pages %}
+                <!--  -->
+                {% for i in question.paginator.page_range %}
+                <!--  -->
+                {% if question.number == i %}
+                <!--  -->
+                <a type="button" value='{{i}}' class="btn bb btn-warning"> {{i}} </a>
+                <!--  -->
+                {% else %}
+                <!--  -->
+                <a type="button" href="?page={{i}}" value="{{i}}" class="btn bb btn-primary"> {{i}} </a> {% endif %}
+                <!--  -->
+                {% endfor %}
+                <!--  -->
+                {% endif %}
+
+
+                <!-- <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="1" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <a href="#" class="btn btn-secondary bb" type="button">2</a>
+                </div>
+                <div class="fl">
+                    <input type="button" value="3" class="btn bb btn-secondary">
+                </div>
+                <div class="fl">
+                    <input type="button" value="4" class="btn bb btn-secondary">
+                </div> -->
+
+
+            </div>
+
+        </div>
+    </div>
+
+    {% endblock %}

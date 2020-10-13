@@ -1,0 +1,204 @@
+{% extends 'base.htm' %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block content %}
+<!-- <a class="b btn btn-danger rounded" style="position: static;" id="a" href="{% url 'index' %}">Home</a> -->
+
+<header class="head-area">
+    <h4>Indian History and Cultural Test</h4>
+</header>
+<div class="row">
+    <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="container-re bg-secondary  text-left">
+            <div class="head-area bg-dark">
+                <h2>Results:</h2>
+            </div><br>
+            <p>
+                {% if user %} name &nbsp;: &nbsp;&nbsp; {{ user.username }} <br>
+                <p>
+                    Gmail&nbsp;: {{ user.email }}
+                </p>
+
+                <p>Score &nbsp;:&nbsp;&nbsp;
+                    <!--  -->
+                    {% if score %}
+                    <!--  -->
+                    {% for i in score %}
+                    <!--  -->
+                    {% if i.email == user.email %}
+                    <!--  -->
+                    {{ i.score }}
+                    <!--  -->
+                    {% endif %}
+                    <!--  -->
+                    {% endfor %}
+                    <!--  -->
+                    {% else %} 70
+                    <!--  -->
+                    {% endif %} marks
+                    <br></p>
+                <p> Total &nbsp;&nbsp;:&nbsp;&nbsp; 100 marks</p>
+                <!-- <form action="{% url 'index' %}" method="GET">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger form-control">
+                        <li class="fas fa-sign-out-alt inline"></li>
+                        <h4 class="inline">Logout</h4>
+                    </button>
+                </form> -->
+                <a href="{% url 'login' %}" class="btn btn-danger form-control">
+                    <li class="fas fa-sign-out-alt inline"></li>
+                    <h4 class="inline">Logout</h4>
+                </a>
+
+                <!--  -->
+                {% else %} name &nbsp;: &nbsp;&nbsp; some name <br>
+                <p>
+                    Gmail&nbsp;: mohammadfirozkhan@gmail.com
+                </p>
+
+                <p>Score &nbsp;:&nbsp;&nbsp; 45 marks<br></p>
+                <p> Total &nbsp;&nbsp;:&nbsp;&nbsp; 100 marks</p>
+
+                <!-- <form action="{% url 'index' %}" method="GET">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger form-control">
+                        <li class="fas fa-sign-out-alt inline"></li>
+                        <h4 class="inline">Logout</h4>
+                    </button>
+                </form> -->
+                <a href="{% url 'login' %}" class="btn btn-danger form-control">
+                    <li class="fas fa-sign-out-alt inline"></li>
+                    <h4 class="inline">Logout</h4>
+                </a>
+
+                <!--  -->
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-7">
+        <div class="container-re add-in-results bg-secondary text-left">
+            <div class="head-area bg-dark">
+                <h2>KEY</h2>
+            </div>
+            {% if question %}
+            <!--  -->
+            {% for q in question %}
+            <!--  -->
+
+            <div class="qus">
+                <h3> {{ q.id }}. {{ q.Question_var }} </h3>
+            </div>
+            <ul><br>
+
+                <ol class="options">
+                    <li>
+                        {% if q.option_1 == q.answer %}
+                        <h4 class="g">
+                            {{ q.option_1 }}
+                        </h4>
+                        {% else %}
+                        <h4>
+                            {{ q.option_1 }}
+                        </h4>
+                        {% endif %}
+                    </li>
+                    <br>
+                    <li>
+                        {% if q.option_2 == q.answer %}
+                        <h4 class="g">
+                            {{ q.option_2 }}
+                        </h4>
+                        {% else %}
+                        <h4>
+                            {{ q.option_2 }}
+                        </h4>
+                        {% endif %}
+                    </li>
+                    <br>
+                    <li>
+                        {% if q.option_3 == q.answer %}
+                        <h4 class="g">
+                            {{ q.option_3 }}
+                        </h4>
+                        {% else %}
+                        <h4>
+                            {{ q.option_3 }}
+                        </h4>
+                        {% endif %}
+                    </li>
+                    <br>
+                    <li>
+                        {% if q.option_4 == q.answer %}
+                        <h4 class="g">
+                            {{ q.option_4 }}
+                        </h4>
+                        {% else %}
+                        <h4>
+                            {{ q.option_4 }}
+                        </h4>
+                        {% endif %}
+                    </li> <br>
+                </ol>
+
+
+            </ul>
+
+            <div class="options">
+
+                <a class=" btn btn-danger disabled">
+                    <h4> Answer </h4>
+                </a>&nbsp;&nbsp;
+                <h3 class="inline"> {{ q.answer_no }} &nbsp;- &nbsp; </h3>
+                <h4 class="red">{{ q.answer }} </h4>
+            </div>
+
+            <br>
+            <hr>
+            <!--  -->
+            {% endfor %}
+            <!--  -->
+            {% endif %}
+
+            <br>
+            <!-- 
+            {% if question.has_other_pages %}
+            {% if question.has_next %}
+            
+            <a href="?page={{question.next_page_number}}" class="btn btn-success right-a"><i
+                        class="fas fa-arrow-right "></i></a>
+            
+            {% else %}
+            <a href="" class="btn btn-dark right-a disabled"><i class="fas fa-arrow-right "></i></a>
+            
+            {% endif %}
+            
+            {% if question.has_previous %}
+            
+            <a href="?page={{question.previous_page_number}}" class="btn btn-success right-a"><i
+                        class="fas fa-arrow-left "></i></a>
+            
+            {% else %}
+            <a href="" class="btn btn-dark right-a disabled"><i class="fas fa-arrow-left "></i></a>
+            
+            {% endif %}
+            
+
+            {% endif %}
+
+            -->
+
+            <!-- <a href="" class="btn btn-success right-a"><i class="fas fa-arrow-right "></i></a> -->
+
+            <!-- <a href="" class="btn btn-success left-a"><i class="fas fa-arrow-left"></i></a> -->
+
+
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}
